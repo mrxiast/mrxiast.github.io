@@ -1,8 +1,18 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.fp.fortunepayapp",
-    "sha256_cert_fingerprints":["F4:87:B2:6A:59:E9:3B:EC:AD:D5:3A:80:23:33:03:78:51:E9:26:9A:46:AA:E9:72:C6:88:A6:A5:F1:1F:26:4A"]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.fp.fortunepayapp",
+      "sha256_cert_fingerprints":["F4:87:B2:6A:59:E9:3B:EC:AD:D5:3A:80:23:33:03:78:51:E9:26:9A:46:AA:E9:72:C6:88:A6:A5:F1:1F:26:4A"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.fp.fortunepayapp",
+      "sha256_cert_fingerprints":["A1:5D:81:0D:B7:D3:A2:98:08:39:49:48:A1:FE:4F:5C:F4:7E:08:EE:AB:69:AC:9E:B6:D3:8D:FB:81:00:6A:51"]
+    }
   }
-}]
+]
