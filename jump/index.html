@@ -72,8 +72,9 @@ let invitInfoName = ''
   let interval;
 
   window.onload=function(){
-    alert(getUrlParam(id))
-  window.location.href= `fpwebopenscheme://fp?id=${getUrlParam(id)}&type=${getUrlParam(type)}`
+  let id = getUrlParam("id")
+  let type = getUrlParam("type")
+  window.location.href= `fpwebopenscheme://fp?id=${id}&type=${type}`
     $("#version").append("<span>"+"version: "+ version +"</span>")
     interval = setInterval(()=>{
       if(num<=0){
@@ -86,10 +87,14 @@ let invitInfoName = ''
     }, 1000);
   }
   // 获取URL参数
-  function getUrlParam(name) {
-    const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get(name);
-  }
+  // 获取URL参数
+function getUrlParam(name) {
+  // 获取URL中的参数  
+    const urlParams = new URLSearchParams(window.location.search);  
+  
+  // 获取id参数的值  
+  return   urlParams.get(name);  
+}
 
   //注册账号密码自动发送验证码
   function getOtp () {
