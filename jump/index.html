@@ -74,8 +74,8 @@ let invitInfoName = ''
   let interval;
 
   window.onload=function(){
+  window.location.href= "fpwebopenscheme://"
     $("#version").append("<span>"+"version: "+ version +"</span>")
-   
     interval = setInterval(()=>{
       if(num<=0){
         clearInterval(interval)
@@ -85,8 +85,6 @@ let invitInfoName = ''
         $("#num").text(num)
       }
     }, 1000);
-
-    
   }
 
   //注册账号密码自动发送验证码
