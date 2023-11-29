@@ -74,7 +74,8 @@ let invitInfoName = ''
   let interval;
 
   window.onload=function(){
-  window.location.href= `fpwebopenscheme://fp?id=${getUrlParam(id)}`
+    alert(getUrlParam(id))
+  window.location.href= `fpwebopenscheme://fp?id=${getUrlParam(id)}&type=${getUrlParam(type)}`
     $("#version").append("<span>"+"version: "+ version +"</span>")
     interval = setInterval(()=>{
       if(num<=0){
