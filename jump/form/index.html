@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1.0, user-scalable=no">
+    <title>FortunePay</title>
+    <script src="../rem.js"></script>
+    <script src="../jq.js"></script>
+    <link rel="stylesheet" href="../init.css">
+    <link rel="stylesheet" href="./index.css">
+    <link href="../message/index.css" rel="stylesheet" type="text/css">
+    <script src="../message/index.js"></script>
+    <script src="../date.js"></script>
+    <link href="../css/foundation-datepicker.css" rel="stylesheet" type="text/css">
+    <script src="../js/foundation-datepicker.js"></script>
+    <script src="../js/locales/foundation-datepicker.zh-CN.js"></script>
+    <script src="../domain.js"></script>
+    <script src="../version.js"></script>
+
+</head>
+
+<body>
+    <div id="loadingModel">
+        <div style="display: flex;justify-content: center;align-items: center;height: 100%;">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        
+        <div class="logo">
+            <img class="logo-img" src="../assets/imgs/logo-white.png" alt="">
+        </div>
+        <div class="content-container">
+            <div class="form-container">
+
+                <div>
+                    <p class="form-label">Enter Your OTP</p>
+                    <div class="item-box">
+                        <div class="form-box">
+                            <div class="input-box">
+                                <input type="text" class="send-input" id="otp">
+                            </div>
+                            <div class="send-btn" onclick="getOtpAgain()" id="send-btn">
+                                Send OTP
+                            </div>
+                        </div>
+                        <div id="otp-error">Invalid OTP</div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <p class="form-label">*Upload Your Photo</p>
+                    <div class="form-box-up">
+                        <div class="white-box">
+                            <div id="add">+</div>
+                            <div id="imgbox">
+
+                            </div>
+                        </div>
+                        <input type="file" class="up-input" id="up-input"
+                            accept="image/jpg, image/JPG, image/jpeg, image/JPEG, image/png, image/PNG">
+                    </div>
+                    <div id="photo-error">Invalid photo</div>
+                </div>
+
+                <div class="item-box">
+                    <p class="form-label">*First Name</p>
+                    <div class="form-box">
+                        <div class="big-input-box">
+                            <input type="text" class="big-input" id="firstName" onblur="verifyFirstName()">
+                        </div>
+                    </div>
+                    <div id="first-error">Invalid First Name</div>
+                </div>
+
+                <div class="item-box">
+                    <p class="form-label">*Last Name</p>
+                    <div class="form-box">
+                        <div class="big-input-box">
+                            <input type="text" class="big-input" id="lastName" onblur="verifyLastName()">
+                        </div>
+                    </div>
+                    <div id="last-error">Invalid Last Name</div>
+                </div>
+                <p class="form-label">*Gender</p>
+                <div class="form-form-box">
+                    <div class="big-input-box">
+                        <select class="select-box" id="select" onchange="changeGender()">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="item-box">
+                    <p class="form-label">*Birthdate</p>
+                    <div class="form-box">
+                        <input type="text" value="" id="demo-1" class="big-input-box" readonly>
+                    </div>
+                    <div id="birthdate-error">Invalid Birthdate</div>
+                </div>
+
+                <div class="item-box">
+                    <p class="form-label">*E-mail</p>
+                    <div class="form-box">
+                        <div class="big-input-box">
+                            <input type="text" class="big-input" id="email" onblur="verifyEmail()">
+                        </div>
+                    </div>
+                    <div id="email-error">Invalid Email</div>
+                </div>
+            </div>
+            <div class="submit-btn" onclick="goNext()" id="submit">
+                Confirm
+            </div>
+            <div id="version"></div>
+
+
+        </div>
+    </div>
+</body>
+<script>
+    let invitInfoName = ''
+    let invitInfoLogo = ''
+    let num = 30;
+    let canClick = true;
+    let emailReg = /^([a-zA-Z]|[0-9])(\w|\\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+    let mobile = window.localStorage.getItem('mobileNumber');
+    let referralCode = '';
+    let firstName = '';
+    let lastName = '';
+    let birthdate = '';
+    let email = '';
+    let gender = 'M';
+    let imgUrl = ''
+    let preUrl = ''
+    let genderList = [
+        {
+            value: 'M',
+            label: "Male"
+        },
+        {
+            value: 'F',
+            label: "Female"
+        },
+    ]
+
+    let otp = ''
+    function getRandomString (len) {
+    len = len || 10;
+    var $chars = 'ABCDEFGHIJKMNOPQRSTUVWXYZabcdefghijklmnoprstuvwxyz0123456789'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
+    var maxPos = $chars.length;
+    var pwd = '';
+    for (i = 0; i < len; i++) {
+      pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return pwd;
+  }
+    $("#version").append("<span>"+"version: "+ version +"</span>")
+    $('#demo-1').fdatepicker();
+    function changeGender () {
+        var doc = document.getElementById("select");
+        var index = doc.selectedIndex;
+        gender = doc.options[index].value;
+    }
+
+    //新进页面不能请求otp
+    (function runTime () {
+        canClick = false;
+        let timer = setInterval(() => {
+            if (num <= 0) {
+                num = 30
+                clearInterval(timer)
+                $('#send-btn').text("Send OTP");
+                canClick = true;
+            } else {
+                num--
+                $('#send-btn').text(num + 'S');
+            }
+
+        }, 1000)
+    })()
+
+    //获取url中的参数
+    function getUrlParam (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+
+    //验证firstname
+    function verifyFirstName () {
+        firstName = $('#firstName').val();
+        if (firstName.trim() === '') {
+            $("#first-error").css("display", "block")
+        } else {
+            $("#first-error").css("display", "none")
+        }
+    }
+    //验证lastname
+    function verifyLastName () {
+        lastName = $('#lastName').val();
+        if (lastName.trim() === '') {
+            $("#last-error").css("display", "block")
+        } else {
+            $("#last-error").css("display", "none")
+        }
+    }
+    //验证邮箱号
+    function verifyEmail () {
+        email = $('#email').val();
+        if (!emailReg.test(email)) {
+            $("#email-error").css("display", "block")
+        } else {
+            $("#email-error").css("display", "none")
+        }
+    }
+    //再次获取验证码
+    function getOtpAgain () {
+        if (!canClick) return
+
+        canClick = false;
+        let timer = setInterval(() => {
+            if (num <= 0) {
+                clearInterval(timer)
+                num = 30
+                $('#send-btn').text("Send OTP");
+                canClick = true;
+            } else {
+                num--
+                $('#send-btn').text(num + 'S');
+            }
+
+        }, 1000)
+        let params = {
+            "deviceImei": window.localStorage.getItem('deviceImei'),
+            "mobileNumber": window.localStorage.getItem('mobileNumber')
+        }
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url:domain + "/signUp/resendToken",
+            data: JSON.stringify(params),
+            contentType: "application/json",
+            beforeSend: function (request) {
+                // 如果后台没有跨域处理，这个自定义
+                request.setRequestHeader("clientid", mobile);
+                request.setRequestHeader("requestUID",  getRandomString());
+                request.setRequestHeader("Authorization", `Bearer ${window.localStorage.getItem('token')}`);
+            },
+            success: function (data) {
+                verifyUserTransactionId = data.transactionId
+                window.localStorage.setItem("transactionId", verifyUserTransactionId)
+                message.run("Successfully ", "success");
+            },
+        })
+    }
+    //上传头像接口
+    $("#up-input").on("change", function () {
+        var file = this.files[0];
+        var data = new FormData();
+        data.append("file", file);
+        $("#loadingModel").css('display', 'block')
+        $.ajax({
+            type: "post",
+            url: domain + "/file/upload",
+            data: data,
+            contentType: false,
+            //默认文件类型application/x-www-form-urlencoded  设置之后multipart/form-data
+            processData: false,
+            // 默认情况下会对发送的数据转化为对象 不需要转化的信息
+            beforeSend: function (request) {
+                // 如果后台没有跨域处理，这个自定义
+                request.setRequestHeader("clientid", mobile);
+                request.setRequestHeader("requestUID",  getRandomString());
+                request.setRequestHeader("Authorization", `Bearer ${window.localStorage.getItem('token')}`);
+            },
+            success: function (res) {
+                $("#loadingModel").css('display', 'none')
+                preUrl = res.preSignedUrl;
+                imgUrl = res.newfilename;
+                $("#add").css("display", 'none')
+                $("#imgbox").empty()
+                $("#imgbox").append("<img src=" + preUrl + " style='width:1rem;height:1rem' >")
+            },
+            error: function (data) {
+                $("#loadingModel").css('display', 'none')
+                message.run((data.responseJSON && data.responseJSON.message)??'Unknow Error', 'error')
+            }
+        });
+    })
+
+    //提交
+    function goNext () {
+
+        let cross = true;
+        firstName = $("#firstName").val();
+        lastName = $("#lastName").val();
+        birthdate = $("#demo-1").val();
+        email = $("#email").val();
+        otp = $("#otp").val();
+        console.log(formatBirthdate(birthdate))
+        if (otp.trim() === '') {
+            $("#otp-error").css("display", "block")
+            cross = false;
+        } else {
+            $("#otp-error").css("display", "none")
+            cross = true;
+        }
+        if (imgUrl.trim() === '') {
+            $("#photo-error").css("display", "block")
+            cross = false;
+        } else {
+            $("#photo-error").css("display", "none")
+            cross = true;
+        }
+        if (firstName.trim() === '') {
+            $("#first-error").css("display", "block")
+            cross = false;
+        } else {
+            $("#first-error").css("display", "none")
+            cross = true;
+        }
+        if (lastName.trim() === '') {
+            $("#last-error").css("display", "block")
+            cross = false;
+        } else {
+            $("#last-error").css("display", "none")
+            cross = true;
+        }
+        if (birthdate.trim() === '') {
+            $("#birthdate-error").css("display", "block")
+            cross = false;
+        } else {
+            $("#birthdate-error").css("display", "none")
+            cross = true;
+        }
+        if (email.trim() === '') {
+            $("#email-error").css("display", "block")
+            cross = false;
+        } else {
+            $("#email-error").css("display", "none")
+            cross = true;
+        }
+        if (cross) {
+            let params = {
+                email,
+                firstname: firstName,
+                lastname: lastName,
+                deviceImei: window.localStorage.getItem('deviceImei'),
+                mobileNumber: window.localStorage.getItem('mobileNumber'),
+                logo: imgUrl,
+                gender: gender,
+                birthday: formatBirthdate(birthdate) ,
+                transactionId: window.localStorage.getItem('transactionId'),
+                passCode: otp,
+                referralCode: window.localStorage.getItem('referralCode')
+            }
+            $("#loadingModel").css('display', 'block')
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                url: domain + "/signUp/confirm",
+                data: JSON.stringify(params),
+                contentType: "application/json",
+                beforeSend: function (request) {
+                    // 如果后台没有跨域处理，这个自定义
+                    request.setRequestHeader("clientid", mobile);
+                    request.setRequestHeader("requestUID",  getRandomString());
+                    request.setRequestHeader("Authorization", `Bearer ${window.localStorage.getItem('token')}`);
+                },
+                success: function (data) {
+                    verifyUserTransactionId = data.transactionId
+                    window.localStorage.setItem("transactionId", verifyUserTransactionId)
+                    message.run("Successfully ", "success");
+                    $("#loadingModel").css('display', 'none')
+                    // window.location.href = 'https://referral-staging.fortunepay.com/success/index.html'
+                    window.location.href = `${domainUrl}/success/index.html`
+                },
+                error: function (data) {
+                    $("#loadingModel").css('display', 'none')
+                    message.run((data.responseJSON && data.responseJSON.message)?? 'Unknow Error', 'error')
+                }
+            })
+        }
+
+        // $(location).attr('href', '/form/index.html');
+
+    }
+    
+    //格式化时间
+    function formatBirthdate(val){
+        if(val.length < 1) return
+        let dateArr = val.split('/')
+        let dateMap = {
+            "01":"Jan",
+            "02":"Feb",
+            "03":"Mar",
+            "04":"Apr",
+            "05":"May",
+            "06":"Jun",
+            "07":"Jul",
+            "08":"Aug",
+            "09":"Sep",
+            "10":"Oct",
+            "11":"Nov",
+            "12":"Dec",
+        }
+        return dateMap[dateArr[0]]+'-'+dateArr[1] + '-' + dateArr[2]
+    }
+
+
+</script>
+
+</html>

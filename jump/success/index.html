@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1.0, user-scalable=no">
+    <title>FortunePay</title>
+    <script src="../rem.js"></script>
+    <script src="../jq.js"></script>
+    <script src="../version.js"></script>
+    <link rel="stylesheet" href="../init.css">
+    <link rel="stylesheet" href="./index.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <img src="../assets/imgs/logo.png" alt="" class="logo">
+        <div class="success">
+            You have successfully registered on
+        </div>
+        <div class="success">
+            Fortune Pay!
+        </div>
+        <div class="scan"> Scan to Download Fortune Pay APP!</div>
+        
+        <div class="url-box">
+            <div onclick="goUrl()" class="url-button">Click here to downlaod</div>
+        </div>
+
+        <div class="qr-box-div">
+            <img src="../assets/imgs/qr.png" alt="" class="qr-box">
+        </div>
+      
+       
+
+        <div id="version"></div>
+    </div>
+</body>
+<script>
+ $("#version").append("<span>"+"version: "+ version +"</span>")
+ function goUrl(){
+    window.location.href = 'http://onelink.to/97434v'
+ }
+</script>
+
+</html>
