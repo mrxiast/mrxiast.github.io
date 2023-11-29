@@ -74,7 +74,7 @@ let invitInfoName = ''
   let interval;
 
   window.onload=function(){
-  window.location.href= "fpwebopenscheme://"
+  window.location.href= `fpwebopenscheme://fp?id=${getUrlParam(id)}`
     $("#version").append("<span>"+"version: "+ version +"</span>")
     interval = setInterval(()=>{
       if(num<=0){
@@ -85,6 +85,11 @@ let invitInfoName = ''
         $("#num").text(num)
       }
     }, 1000);
+  }
+  // 获取URL参数
+  function getUrlParam(name) {
+    const searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get(name);
   }
 
   //注册账号密码自动发送验证码
