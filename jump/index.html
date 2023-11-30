@@ -47,12 +47,26 @@
   </div>
   <div class="container">
     <div class="logo">
+
       <img class="logo-img" src="./assets/imgs/logo-white.png" alt="">
     </div>
-    <div >
+    <!-- <div >
       <div class="text1">Jump to the application market</div>
       <div class="text2"> <span id="num">10</span> seconds</div>
+    </div> -->
+    <div class="content">
+      <div class="title">
+        Leading the society towards a cashless future.
+      </div>
+      <div class="center-img-box">
+        <img class="center-img" src="./assets/imgs/center.jpg" alt="">
+      </div>
+      <a :href="`fpwebopenscheme://fp?id=${id}&type=${type}`"><div class="open-btn">Open FortunePay</div></a>
+      
+      <div class="text-one">If you have not installed Fortune Pay App,Please <a href="http://onelink.to/97434v" class="a-box" style="color: #0f69d5;">Download</a></div>
+     
     </div>
+    
     
    
   </div>
@@ -80,7 +94,7 @@ let invitInfoName = ''
     interval = setInterval(()=>{
       if(num<=0){
         clearInterval(interval)
-        window.location.href = "http://onelink.to/97434v";
+        // window.location.href = "http://onelink.to/97434v";
       }else{
         num--
         $("#num").text(num)
