@@ -57,8 +57,9 @@
 }
 
 .logo {
+  padding-top: 0.2rem;
   height: 0.6rem;
-  background-color: #0f69d5;
+  /* background-color: #0f69d5; */
   text-align: center;
 }
 
