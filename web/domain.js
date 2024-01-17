@@ -1,2 +1,0 @@
-const domain =window.location.host === 'referral-staging.fortunepay.com' ? 'https://staging.fortunepay.com/referral/mobile/self-service' : window.location.host === 'referral.fortunepay.com' ? 'https://api.fortunepay.com/referral/mobile/self-service':'https://staging.fortunepay.com/referral/mobile/self-service'
-const domainUrl =window.location.host === 'referral-staging.fortunepay.com' ? 'https://referral-staging.fortunepay.com' : window.location.host === 'referral.fortunepay.com' ? 'https://referral.fortunepay.com':'https://referral-staging.fortunepay.com'
