@@ -9,8 +9,13 @@
     <div>99999</div>
 </body>
 <script>
-    function alert (){
-        alert('999---999')
+    function alert (value){
+        alert(value)
     }
+    setTimeout(()=>{
+        window.flutterMessage.webReceiveMessage = (message) => {
+      setMessage("getToken")
+    }
+    },5000)
 </script>
 </html>
