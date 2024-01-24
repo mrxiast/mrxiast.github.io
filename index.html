@@ -13,9 +13,7 @@
         alert(value)
     }
     setTimeout(()=>{
-        window.flutterMessage.getToken = (message) => {
-      setMessage("getToken")
-    }
+        window['getToken'].postMessage("123423");
     },5000)
 </script>
 </html>
