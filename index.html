@@ -9,15 +9,31 @@
     <div onclick="openBluetoothAdapter()">
         初始化蓝牙
     </div>
-    <div onclick="openBluetoothAdapter()" style="margin-top:20px;size: 20px;">
-        初始化蓝牙
+    <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
+        蓝牙列表蓝牙
     </div>
 
     <script src="fp_js_utils.js"></script>
     <script>
+        //开启蓝牙
         function openBluetoothAdapter() {
             var fp =new FpayUtils();
             fp.openBluetoothAdapter({
+                success: (res) => {
+                console.log(res)
+                },
+                error: (res) => {
+                    console.log(res)
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+        }
+        //查看蓝也列表
+        function startBluetoothDevicesDiscovery() {
+            var fp =new FpayUtils();
+            fp.startBluetoothDevicesDiscovery({
                 success: (res) => {
                 console.log(res)
                 },
