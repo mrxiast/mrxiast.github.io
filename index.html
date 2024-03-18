@@ -6,13 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    <div>99</div>
-    <div onclick="test()">tets</div>
+    <div onclick="openBluetoothAdapter()">
+        初始化蓝牙
+    </div>
+    <div onclick="openBluetoothAdapter()" style="margin-top:20px;size: 20px;">
+        初始化蓝牙
+    </div>
+
+    <script src="fp_js_utils.js"></script>
+    <script>
+        function openBluetoothAdapter() {
+            var fp =new FpayUtils();
+            fp.openBluetoothAdapter({
+                success: (res) => {
+                console.log(res)
+                },
+                error: (res) => {
+                    console.log(res)
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+        }
+    </script>
 </body>
-<script>
-    function test (){
-        alert("123")
-    }
- 
-</script>
 </html>
