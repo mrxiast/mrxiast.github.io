@@ -69,4 +69,14 @@
         }
         options.complete(result);
       }
+      //开始搜索蓝牙列表
+      async stopBluetoothDevicesDiscovery(options){
+        let result = window.flutter_inappwebview.callHandler("stopBluetoothDevicesDiscovery",options);
+        if(result.code === 0){
+          options.success(result);
+        }else{
+          options.error(result);
+        }
+        options.complete(result);
+      }
   }

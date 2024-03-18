@@ -10,7 +10,10 @@
         初始化蓝牙
     </div>
     <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
-        蓝牙列表蓝牙
+        搜索蓝牙列表蓝牙
+    </div>
+    <div onclick="stopBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
+        停止搜索蓝牙列表蓝牙
     </div>
 
     <script src="fp_js_utils.js"></script>
@@ -31,12 +34,28 @@
                 }
             })
         }
-        //查看蓝牙列表
+        //开启蓝牙列表查询
         function startBluetoothDevicesDiscovery() {
             var fp =new FpayUtils();
             fp.startBluetoothDevicesDiscovery({
                 services:[],//要搜索的蓝牙设备主 service 的 uuid 列表
                 allowDuplicatesKey:true,//是否允许重复上报同一设备。如果允许重复上报，则 uni.onBlueToothDeviceFound 方法会多次上报同一设备，但是 RSSI 值会有不同。
+                success: (res) => {
+                console.log(res)
+                },
+                error: (res) => {
+                    console.log(res)
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+        }
+        //关闭蓝牙搜索
+        function stopBluetoothDevicesDiscovery() {
+            var fp =new FpayUtils();
+            fp.stopBluetoothDevicesDiscovery({
+            
                 success: (res) => {
                 console.log(res)
                 },
