@@ -61,12 +61,12 @@
       async startBluetoothDevicesDiscovery(options){
         let result = window.flutter_inappwebview.callHandler("startBluetoothDevicesDiscovery",options);
         if(result.code === 0){
-          options.success(result);
+          setInterval(()=>{
+            options.success(result);
+          },1000)
         }else{
           options.error(result);
         }
         options.complete(result);
       }
-    
-
   }
