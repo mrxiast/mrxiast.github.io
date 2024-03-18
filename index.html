@@ -15,6 +15,12 @@
     <div onclick="stopBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         停止搜索蓝牙列表蓝牙
     </div>
+    <div onclick="getBluetoothAdapterState()" style="margin-top:20px;size: 20px;">
+        查看蓝牙状态
+    </div>
+    <div onclick="closeBluetoothAdapter()" style="margin-top:20px;size: 20px;">
+        关闭蓝牙
+    </div>
 
     <script src="fp_js_utils.js"></script>
     <script>
@@ -55,7 +61,22 @@
         function stopBluetoothDevicesDiscovery() {
             var fp =new FpayUtils();
             fp.stopBluetoothDevicesDiscovery({
-            
+                success: (res) => {
+                console.log(res)
+                },
+                error: (res) => {
+                    console.log(res)
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+         
+        }
+        //获取蓝牙适配器状态
+        function getBluetoothAdapterState() {
+            var fp =new FpayUtils();
+            fp.getBluetoothAdapterState({
                 success: (res) => {
                 console.log(res)
                 },
@@ -67,6 +88,22 @@
                 }
             })
         }
+        //关闭蓝牙
+        function closeBluetoothAdapter() {
+            var fp =new FpayUtils();
+            fp.closeBluetoothAdapter({
+                success: (res) => {
+                console.log(res)
+                },
+                error: (res) => {
+                    console.log(res)
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+        }
+        
     </script>
 </body>
 </html>
