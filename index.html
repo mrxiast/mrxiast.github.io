@@ -27,15 +27,18 @@
     <div onclick="closeBluetoothAdapter()" style="margin-top:20px;size: 20px;">
         关闭蓝牙
     </div>
+    <div id="res"></div>
 
     <script src="fp_js_utils.js"></script>
     <script>
+        var result ='';
         //开启蓝牙
         function openBluetoothAdapter() {
             var fp =new FpayUtils();
             fp.openBluetoothAdapter({
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
                     console.log("err-",JSON.stringify(res));
@@ -53,6 +56,7 @@
                 allowDuplicatesKey:true,//是否允许重复上报同一设备。如果允许重复上报，则 uni.onBlueToothDeviceFound 方法会多次上报同一设备，但是 RSSI 值会有不同。
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
                     console.log("err-",JSON.stringify(res));
@@ -68,6 +72,7 @@
             fp.stopBluetoothDevicesDiscovery({
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
                     console.log("err-",JSON.stringify(res));
@@ -84,6 +89,7 @@
             fp.getBluetoothAdapterState({
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
                     console.log("err-",JSON.stringify(res));
@@ -99,6 +105,7 @@
             fp.closeBluetoothAdapter({
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
                     console.log("err-",JSON.stringify(res));
@@ -115,6 +122,7 @@
                 services:[],
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
                     console.log("err-",JSON.stringify(res));
@@ -131,6 +139,7 @@
                 services:[],
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
                     console.log("err-",JSON.stringify(res));
