@@ -21,6 +21,9 @@
     <div onclick="getConnectedBluetoothDevices()" style="margin-top:20px;size: 20px;">
         根据 uuid 获取处于已连接状态的设备
     </div>
+    <div onclick="getBluetoothDevices()" style="margin-top:20px;size: 20px;">
+        获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
+    </div>
     <div onclick="closeBluetoothAdapter()" style="margin-top:20px;size: 20px;">
         关闭蓝牙
     </div>
@@ -106,10 +109,26 @@
                 }
             })
         }
-         //关闭蓝牙
+         //获取链接的设备列表
          function getConnectedBluetoothDevices() {
             var fp =new FpayUtils();
             fp.getConnectedBluetoothDevices({
+                services:[],
+                success: (res) => {
+                console.log(res)
+                },
+                error: (res) => {
+                    console.log(res)
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+        }
+        //获取所有的蓝牙设备
+        function getBluetoothDevices() {
+            var fp =new FpayUtils();
+            fp.getBluetoothDevices({
                 services:[],
                 success: (res) => {
                 console.log(res)

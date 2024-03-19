@@ -99,6 +99,26 @@
         }
         options.complete(result);
       }
+      //获取链接的设备列表
+      async getConnectedBluetoothDevices(options){
+        let result = window.flutter_inappwebview.callHandler("getConnectedBluetoothDevices",options);
+        if(result.code === 0){
+          options.success(result);
+        }else{
+          options.error(result);
+        }
+        options.complete(result);
+      }
+      //获取所有的蓝牙设备
+      async getBluetoothDevices(options){
+        let result = window.flutter_inappwebview.callHandler("getBluetoothDevices",options);
+        if(result.code === 0){
+          options.success(result);
+        }else{
+          options.error(result);
+        }
+        options.complete(result);
+      }
       //关闭蓝牙
       async closeBluetoothAdapter(options){
         let result = window.flutter_inappwebview.callHandler("closeBluetoothAdapter",options);
