@@ -18,6 +18,9 @@
     <div onclick="getBluetoothAdapterState()" style="margin-top:20px;size: 20px;">
         查看蓝牙状态
     </div>
+    <div onclick="getConnectedBluetoothDevices()" style="margin-top:20px;size: 20px;">
+        根据 uuid 获取处于已连接状态的设备
+    </div>
     <div onclick="closeBluetoothAdapter()" style="margin-top:20px;size: 20px;">
         关闭蓝牙
     </div>
@@ -92,6 +95,22 @@
         function closeBluetoothAdapter() {
             var fp =new FpayUtils();
             fp.closeBluetoothAdapter({
+                success: (res) => {
+                console.log(res)
+                },
+                error: (res) => {
+                    console.log(res)
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+        }
+         //关闭蓝牙
+         function getConnectedBluetoothDevices() {
+            var fp =new FpayUtils();
+            fp.getConnectedBluetoothDevices({
+                services:[],
                 success: (res) => {
                 console.log(res)
                 },
