@@ -35,10 +35,10 @@
             var fp =new FpayUtils();
             fp.openBluetoothAdapter({
                 success: (res) => {
-                console.log(JSON.stringify(res));
+                    console.log("success-",JSON.stringify(res));
                 },
                 error: (res) => {
-                    console.log(res)
+                    console.log("err-",JSON.stringify(res));
                 },
                 complete:(res)=>{
                     console.log(res)
@@ -52,10 +52,10 @@
                 services:[],//要搜索的蓝牙设备主 service 的 uuid 列表
                 allowDuplicatesKey:true,//是否允许重复上报同一设备。如果允许重复上报，则 uni.onBlueToothDeviceFound 方法会多次上报同一设备，但是 RSSI 值会有不同。
                 success: (res) => {
-                    console.log(JSON.stringify(res));
+                    console.log("success-",JSON.stringify(res));
                 },
                 error: (res) => {
-                    console.log(res)
+                    console.log("err-",JSON.stringify(res));
                 },
                 complete:(res)=>{
                     console.log(res)
@@ -67,10 +67,10 @@
             var fp =new FpayUtils();
             fp.stopBluetoothDevicesDiscovery({
                 success: (res) => {
-                    console.log(JSON.stringify(res));
+                    console.log("success-",JSON.stringify(res));
                 },
                 error: (res) => {
-                    console.log(res)
+                    console.log("err-",JSON.stringify(res));
                 },
                 complete:(res)=>{
                     console.log(res)
@@ -83,10 +83,10 @@
             var fp =new FpayUtils();
             fp.getBluetoothAdapterState({
                 success: (res) => {
-                    console.log(JSON.stringify(res));
+                    console.log("success-",JSON.stringify(res));
                 },
                 error: (res) => {
-                    console.log(res)
+                    console.log("err-",JSON.stringify(res));
                 },
                 complete:(res)=>{
                     console.log(res)
@@ -98,10 +98,10 @@
             var fp =new FpayUtils();
             fp.closeBluetoothAdapter({
                 success: (res) => {
-                    console.log(JSON.stringify(res));
+                    console.log("success-",JSON.stringify(res));
                 },
                 error: (res) => {
-                    console.log(res)
+                    console.log("err-",JSON.stringify(res));
                 },
                 complete:(res)=>{
                     console.log(res)
@@ -114,10 +114,10 @@
             fp.getConnectedBluetoothDevices({
                 services:[],
                 success: (res) => {
-                    console.log(JSON.stringify(res));
+                    console.log("success-",JSON.stringify(res));
                 },
                 error: (res) => {
-                    console.log(res)
+                    console.log("err-",JSON.stringify(res));
                 },
                 complete:(res)=>{
                     console.log(res)
@@ -130,10 +130,10 @@
             fp.getBluetoothDevices({
                 services:[],
                 success: (res) => {
-                    console.log(JSON.stringify(res));
+                    console.log("success-",JSON.stringify(res));
                 },
                 error: (res) => {
-                    console.log(res)
+                    console.log("err-",JSON.stringify(res));
                 },
                 complete:(res)=>{
                     console.log(res)
