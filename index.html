@@ -35,8 +35,8 @@
             var fp =new FpayUtils();
             fp.openBluetoothAdapter({
                 success: (res) => {
-                    alert(res);
-                console.log(res)
+                    
+                console.log(JSON.stringify(res));
                 },
                 error: (res) => {
                     console.log(res)
