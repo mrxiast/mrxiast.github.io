@@ -49,7 +49,7 @@
       }
       //初始化蓝牙模块
       async openBluetoothAdapter(options){
-        let result = window.flutter_inappwebview.callHandler("openBluetoothAdapter",options);
+        let result =await window.flutter_inappwebview.callHandler("openBluetoothAdapter",options);
         if(result.code === 0){
           options.success(result);
         }else{
@@ -59,7 +59,7 @@
       }
       //开始搜索蓝牙列表
       async startBluetoothDevicesDiscovery(options){
-        let result = window.flutter_inappwebview.callHandler("startBluetoothDevicesDiscovery",options);
+        let result =await window.flutter_inappwebview.callHandler("startBluetoothDevicesDiscovery",options);
         if(result.code === 0){
           setInterval(()=>{
             options.success(result);
@@ -71,7 +71,7 @@
       }
       //获取列表
       async onBluetoothDeviceFound(options){
-        let result = window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
+        let result =await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
         if(result.code === 0){
           options.success(result);
         }else{
@@ -81,7 +81,7 @@
       }
       //停止搜索蓝牙列表
       async stopBluetoothDevicesDiscovery(options){
-        let result = window.flutter_inappwebview.callHandler("stopBluetoothDevicesDiscovery",options);
+        let result =await window.flutter_inappwebview.callHandler("stopBluetoothDevicesDiscovery",options);
         if(result.code === 0){
           options.success(result);
         }else{
@@ -91,7 +91,7 @@
       }
       //获取蓝牙适配器状态
       async getBluetoothAdapterState(options){
-        let result = window.flutter_inappwebview.callHandler("getBluetoothAdapterState",options);
+        let result =await window.flutter_inappwebview.callHandler("getBluetoothAdapterState",options);
         if(result.code === 0){
           options.success(result);
         }else{
@@ -101,7 +101,7 @@
       }
       //获取链接的设备列表
       async getConnectedBluetoothDevices(options){
-        let result = window.flutter_inappwebview.callHandler("getConnectedBluetoothDevices",options);
+        let result =await window.flutter_inappwebview.callHandler("getConnectedBluetoothDevices",options);
         if(result.code === 0){
           options.success(result);
         }else{
@@ -111,8 +111,8 @@
       }
       //获取所有的蓝牙设备
       async getBluetoothDevices(options){
-        alert('123')
-        let result = window.flutter_inappwebview.callHandler("getBluetoothDevices",options);
+        
+        let result =await window.flutter_inappwebview.callHandler("getBluetoothDevices",options);
         if(result.code === 0){
           options.success(result);
         }else{
@@ -122,7 +122,7 @@
       }
       //关闭蓝牙
       async closeBluetoothAdapter(options){
-        let result = window.flutter_inappwebview.callHandler("closeBluetoothAdapter",options);
+        let result =await window.flutter_inappwebview.callHandler("closeBluetoothAdapter",options);
         if(result.code === 0){
           options.success(result);
         }else{
