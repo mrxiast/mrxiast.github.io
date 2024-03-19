@@ -111,6 +111,7 @@
       }
       //获取所有的蓝牙设备
       async getBluetoothDevices(options){
+        alert('123')
         let result = window.flutter_inappwebview.callHandler("getBluetoothDevices",options);
         if(result.code === 0){
           options.success(result);
