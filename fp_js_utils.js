@@ -1,10 +1,7 @@
  class FpayUtils {
     constructor() {
-      
       if (!FpayUtils.instance) {
-        
         FpayUtils.instance = this;
-        window.testDia = ()=>{alert("haha")}
       }
       return FpayUtils.instance;
     }
@@ -12,8 +9,6 @@
     static getInstance(config) {
       return FpayUtils.instance || new FpayUtils();
     }
-  
-   
       //静默授权码
       async login(options){
         var appInfo =await window.flutter_inappwebview.callHandler('miniAppInfo');
@@ -73,8 +68,7 @@
       async onBluetoothDeviceFound(options){
         let result =await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
         if(result.code !==-1){
-          options.success(result);
-          
+          window.OnBluetoothDeviceFoundByFpCallBack = options.success(result);
         }else{
           options.error(result);
         }
