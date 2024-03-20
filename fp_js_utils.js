@@ -2,7 +2,9 @@
     constructor() {
       
       if (!FpayUtils.instance) {
+        
         FpayUtils.instance = this;
+        window.testDia = ()=>{alert("haha")}
       }
       return FpayUtils.instance;
     }
@@ -72,6 +74,7 @@
         let result =await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
         if(result.code !==-1){
           options.success(result);
+          
         }else{
           options.error(result);
         }
