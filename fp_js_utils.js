@@ -72,7 +72,8 @@
         window.OnBluetoothDeviceFoundByFpCallComplete= options.complete;
         let result =await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
         if(result.code !==-1){
-          options.success(result);
+          alert("zouzheli")
+          // options.success(result);
         }else{
           options.error(result);
         }
