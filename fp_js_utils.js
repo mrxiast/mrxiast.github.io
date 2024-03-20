@@ -66,7 +66,9 @@
       }
       //获取列表
       async onBluetoothDeviceFound(options){
-        window.OnBluetoothDeviceFoundByFpCallSuccess =(result) =>{options.success(result)};
+        window.OnBluetoothDeviceFoundByFpCallSuccess =(result) =>{
+          options.success(result)
+        };
         window.OnBluetoothDeviceFoundByFpCallSuccess1 = ()=>{alert('heihei')};
         window.OnBluetoothDeviceFoundByFpCallError = options.error;
         window.OnBluetoothDeviceFoundByFpCallComplete= options.complete;

@@ -13,7 +13,7 @@
         搜索蓝牙列表蓝牙
     </div>
     <div onclick="onBluetoothDeviceFound()" style="margin-top:20px;size: 20px;">
-        监听蓝牙是否有新设备--
+        监听蓝牙是否有新设备
     </div>
     <div onclick="stopBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         停止搜索蓝牙列表蓝牙
@@ -157,6 +157,7 @@
             var fp =new FpayUtils();
             fp.onBluetoothDeviceFound({
                 success: (res) => {
+                    alert('555')
                     console.log("success-",JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
