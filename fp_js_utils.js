@@ -5,6 +5,7 @@
       }
       return FpayUtils.instance;
     }
+    timeInterval;
 
     static getInstance(config) {
       return FpayUtils.instance || new FpayUtils();
@@ -64,22 +65,18 @@
         }
         options.complete(result);
       }
-      //获取列表
+      //监听蓝牙
       async onBluetoothDeviceFound(options){
-        window.OnBluetoothDeviceFoundByFpCallSuccess =(result) =>{
-          options.success(result)
-        };
-        window.OnBluetoothDeviceFoundByFpCallSuccess1 = ()=>{alert('heihei')};
-        window.OnBluetoothDeviceFoundByFpCallError = options.error;
-        window.OnBluetoothDeviceFoundByFpCallComplete= options.complete;
-        let result =await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
+        timeInterval = setInterval(async()=>{
+          let result =await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
         if(result.code !==-1){
-          alert("zouzheli")
-          // options.success(result);
+          options.success(result);
         }else{
           options.error(result);
         }
         options.complete(result);
+        },1000)
+        
       }
       //停止搜索蓝牙列表
       async stopBluetoothDevicesDiscovery(options){
@@ -113,7 +110,6 @@
       }
       //获取所有的蓝牙设备
       async getBluetoothDevices(options){
-        
         let result =await window.flutter_inappwebview.callHandler("getBluetoothDevices",options);
         if(result.code !==-1){
           options.success(result);

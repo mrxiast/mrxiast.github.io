@@ -7,7 +7,7 @@
 </head>
 <body>
     <div onclick="openBluetoothAdapter()">
-        初始化蓝牙
+        初始化蓝牙--
     </div>
     <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         搜索蓝牙列表蓝牙
@@ -58,19 +58,6 @@
                 services:[],//要搜索的蓝牙设备主 service 的 uuid 列表
                 allowDuplicatesKey:true,//是否允许重复上报同一设备。如果允许重复上报，则 uni.onBlueToothDeviceFound 方法会多次上报同一设备，但是 RSSI 值会有不同。
                 success: (res) => {
-                    fp.onBluetoothDeviceFound({
-                        success: (res) => {
-                          
-                            console.log("success-",JSON.stringify(res));
-                            document.getElementById("res").innerHTML = JSON.stringify(res);
-                        },
-                        error: (res) => {
-                            console.log("err-",JSON.stringify(res));
-                        },
-                        complete:(res)=>{
-                            console.log(res)
-                        }
-                    })
                     console.log("success-",JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
