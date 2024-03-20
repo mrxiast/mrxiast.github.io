@@ -88,6 +88,7 @@
             var fp =new FpayUtils();
             fp.getBluetoothAdapterState({
                 success: (res) => {
+                    alert(JSON.stringify(res));
                     console.log("success-",JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
