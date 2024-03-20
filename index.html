@@ -7,10 +7,13 @@
 </head>
 <body>
     <div onclick="openBluetoothAdapter()">
-        初始化蓝牙a
+        初始化蓝牙t
     </div>
     <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         搜索蓝牙列表蓝牙
+    </div>
+    <div onclick="onBluetoothDeviceFound()" style="margin-top:20px;size: 20px;">
+        监听蓝牙是否有新设备
     </div>
     <div onclick="stopBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         停止搜索蓝牙列表蓝牙
@@ -137,6 +140,22 @@
             var fp =new FpayUtils();
             fp.getBluetoothDevices({
                 services:[],
+                success: (res) => {
+                    console.log("success-",JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
+                },
+                error: (res) => {
+                    console.log("err-",JSON.stringify(res));
+                },
+                complete:(res)=>{
+                    console.log(res)
+                }
+            })
+        }
+        //监听蓝牙搜索
+        function onBluetoothDeviceFound() {
+            var fp =new FpayUtils();
+            fp.onBluetoothDeviceFound({
                 success: (res) => {
                     console.log("success-",JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
