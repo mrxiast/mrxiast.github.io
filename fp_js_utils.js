@@ -66,7 +66,7 @@
       }
       //获取列表
       async onBluetoothDeviceFound(options){
-        window.OnBluetoothDeviceFoundByFpCallBackSuccess = options.success;
+        window.OnBluetoothDeviceFoundByFpCallSuccess = options.success;
         window.OnBluetoothDeviceFoundByFpCallError = options.error;
         window.OnBluetoothDeviceFoundByFpCallComplete= options.complete;
         await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
