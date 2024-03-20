@@ -16,7 +16,7 @@
         停止搜索蓝牙列表蓝牙
     </div>
     <div onclick="getBluetoothAdapterState()" style="margin-top:20px;size: 20px;">
-        查看蓝牙状态aa
+        查看蓝牙状态
     </div>
     <div onclick="getConnectedBluetoothDevices()" style="margin-top:20px;size: 20px;">
         根据 uuid 获取处于已连接状态的设备
@@ -88,7 +88,6 @@
             var fp =new FpayUtils();
             fp.getBluetoothAdapterState({
                 success: (res) => {
-                    alert(JSON.stringify(res));
                     console.log("success-",JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
