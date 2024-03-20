@@ -67,10 +67,16 @@
       //获取列表
       async onBluetoothDeviceFound(options){
         window.OnBluetoothDeviceFoundByFpCallSuccess = options.success;
+        window.OnBluetoothDeviceFoundByFpCallSuccess1 = ()=>{alert('heihei')};
         window.OnBluetoothDeviceFoundByFpCallError = options.error;
         window.OnBluetoothDeviceFoundByFpCallComplete= options.complete;
-        await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
-        
+        let result =await window.flutter_inappwebview.callHandler("onBluetoothDeviceFound",options);
+        if(result.code !==-1){
+          options.success(result);
+        }else{
+          options.error(result);
+        }
+        options.complete(result);
       }
       //停止搜索蓝牙列表
       async stopBluetoothDevicesDiscovery(options){
