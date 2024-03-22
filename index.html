@@ -7,13 +7,10 @@
 </head>
 <body>
     <div onclick="openBluetoothAdapter()">
-        初始化蓝牙--
+        初始化蓝牙
     </div>
     <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         搜索蓝牙列表蓝牙
-    </div>
-    <div onclick="onBluetoothDeviceFound()" style="margin-top:20px;size: 20px;">
-        监听蓝牙是否有新设备
     </div>
     <div onclick="stopBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         停止搜索蓝牙列表蓝牙
@@ -21,11 +18,9 @@
     <div onclick="getBluetoothAdapterState()" style="margin-top:20px;size: 20px;">
         查看蓝牙状态
     </div>
-    <div onclick="getConnectedBluetoothDevices()" style="margin-top:20px;size: 20px;">
-        根据 uuid 获取处于已连接状态的设备
-    </div>
+ 
     <div onclick="getBluetoothDevices()" style="margin-top:20px;size: 20px;">
-        获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
+        获取在蓝牙模块生效期间所有已发现的蓝牙设备。
     </div>
     <div onclick="closeBluetoothAdapter()" style="margin-top:20px;size: 20px;">
         关闭蓝牙
@@ -118,46 +113,13 @@
                 }
             })
         }
-         //获取链接的设备列表
-         function getConnectedBluetoothDevices() {
-            var fp =new FpayUtils();
-            fp.getConnectedBluetoothDevices({
-                services:[],
-                success: (res) => {
-                    console.log("success-",JSON.stringify(res));
-                    document.getElementById("res").innerHTML = JSON.stringify(res);
-                },
-                error: (res) => {
-                    console.log("err-",JSON.stringify(res));
-                },
-                complete:(res)=>{
-                    console.log(res)
-                }
-            })
-        }
+        
         //获取所有的蓝牙设备
         function getBluetoothDevices() {
             var fp =new FpayUtils();
             fp.getBluetoothDevices({
                 services:[],
                 success: (res) => {
-                    console.log("success-",JSON.stringify(res));
-                    document.getElementById("res").innerHTML = JSON.stringify(res);
-                },
-                error: (res) => {
-                    console.log("err-",JSON.stringify(res));
-                },
-                complete:(res)=>{
-                    console.log(res)
-                }
-            })
-        }
-        //监听蓝牙搜索
-        function onBluetoothDeviceFound() {
-            var fp =new FpayUtils();
-            fp.onBluetoothDeviceFound({
-                success: (res) => {
-                    alert('555')
                     console.log("success-",JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
