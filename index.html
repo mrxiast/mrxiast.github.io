@@ -9,7 +9,7 @@
 
 <body>
     <div onclick="openBluetoothAdapter()">
-        初始化蓝牙
+        初始化蓝牙--
     </div>
     <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         搜索蓝牙列表蓝牙
@@ -149,7 +149,7 @@
                     console.log("success-", JSON.stringify(res));
                     for (let i = 0; i < res.data.length; i++) {
                         var div = document.createElement('div');
-                        div.innerHTML = res.data[i]
+                        div.innerHTML = JSON.stringify(res.data[i]);
                         div.style.backgroundColor = 'red'; // 设置背景色为红色
                         div.style.margin = '5px';
                         div.onclick = function () {
