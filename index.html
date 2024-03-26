@@ -149,6 +149,9 @@
                     console.log("success-", JSON.stringify(res));
                     for (let i = 0; i < res.data.length; i++) {
                         var div = document.createElement('div');
+                        div.innerHTML = res.data[i]
+                        div.style.backgroundColor = 'red'; // 设置背景色为红色
+                        div.style.margin = '5px';
                         div.onclick = function () {
                             index = i;
                             createBLEConnection()
