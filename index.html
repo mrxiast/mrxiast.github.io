@@ -56,6 +56,7 @@
         let serviceId = "";
         let characteristicsId = "";
         let value = [];
+        let index = 0;
         //开启蓝牙
         function openBluetoothAdapter() {
             var fp = new FpayUtils();
@@ -149,6 +150,7 @@
                     for (let i = 0; i < res.data.length; i++) {
                         var div = document.createElement('div');
                         div.onclick = function () {
+                            index = i;
                             createBLEConnection()
                         }
                         document.getElementById("list").appendChild(
