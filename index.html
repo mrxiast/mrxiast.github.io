@@ -148,17 +148,18 @@
                 success: (res) => {
                     console.log("success-", JSON.stringify(res));
                     for (let i = 0; i < res.data.length; i++) {
-                        var div = document.createElement('div');
-                        div.innerHTML = JSON.stringify(res.data[i]);
-                        div.style.backgroundColor = 'red'; // 设置背景色为红色
-                        div.style.margin = '5px';
-                        div.onclick = function () {
-                            index = i;
-                            createBLEConnection()
-                        }
-                        document.getElementById("list").appendChild(
-                            div
-                        )
+                        (function (index) { // 创建一个IIFE来捕获当前的i值  
+                            var div = document.createElement('div');
+                            div.innerHTML = JSON.stringify(res.data[index]);
+                            div.style.backgroundColor = 'red';
+                            div.style.margin = '5px';
+                            div.onclick = function () {
+                                // 在这里，您可以使用捕获的index值，而不是外部的i变量  
+                                createBLEConnection(); // 假设createBLEConnection不需要任何参数  
+                                // 如果createBLEConnection需要当前项的索引或数据，您可以将它们作为参数传递  
+                            };
+                            document.getElementById("list").appendChild(div);
+                        })(i); // 调用IIFE，并传入当前的i值作为index参数  
                     }
 
                     document.getElementById("res").innerHTML = JSON.stringify(res);
@@ -174,6 +175,7 @@
         }
         //连接低功耗蓝牙
         function createBLEConnection() {
+            alert('123');
             var fp = new FpayUtils();
             fp.createBLEConnection({
                 deviceId: deviceId,
