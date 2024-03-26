@@ -156,7 +156,7 @@
                             div.onclick = function () {
                                 // 在这里，您可以使用捕获的index值，而不是外部的i变量  
                                 alert('001');
-                                index = i;
+                                deviceId = res.data[index].deviceId
                                 createBLEConnection(); // 假设createBLEConnection不需要任何参数  
                                 // 如果createBLEConnection需要当前项的索引或数据，您可以将它们作为参数传递  
                             };
