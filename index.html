@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div onclick="openBluetoothAdapter()">
-        初始化蓝牙--
+        初始化蓝牙
     </div>
     <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         搜索蓝牙列表蓝牙
@@ -18,9 +20,27 @@
     <div onclick="getBluetoothAdapterState()" style="margin-top:20px;size: 20px;">
         查看蓝牙状态
     </div>
- 
+
     <div onclick="getBluetoothDevices()" style="margin-top:20px;size: 20px;">
         获取在蓝牙模块生效期间所有已发现的蓝牙设备。
+    </div>
+    <div onclick="createBLEConnection()" style="margin-top:20px;size: 20px;">
+        连接低功耗蓝牙设备
+    </div>
+    <div onclick="getBLEDeviceServices()" style="margin-top:20px;size: 20px;">
+        获取蓝牙设备所有服务
+    </div>
+    <div onclick="getBLEDeviceCharacteristics()" style="margin-top:20px;size: 20px;">
+        获取蓝牙设备所有服务的特征
+    </div>
+    <div onclick="writeBLECharacteristicValue()" style="margin-top:20px;size: 20px;">
+        向低功耗蓝牙设备特征值中写入二进制数据
+    </div>
+    <div onclick="readBLECharacteristicValue()" style="margin-top:20px;size: 20px;">
+        读取低功耗蓝牙设备特征值中写入二进制数据
+    </div>
+    <div onclick="closeBLEConnection()" style="margin-top:20px;size: 20px;">
+        断开低功耗蓝牙设备
     </div>
     <div onclick="closeBluetoothAdapter()" style="margin-top:20px;size: 20px;">
         关闭蓝牙
@@ -29,108 +49,225 @@
 
     <script src="fp_js_utils.js"></script>
     <script>
-        var result ='';
+        var result = '';
+        let deviceId = "";
+        let serviceId = "";
+        let characteristicsId = "";
+        let value = [];
         //开启蓝牙
         function openBluetoothAdapter() {
-            var fp =new FpayUtils();
+            var fp = new FpayUtils();
             fp.openBluetoothAdapter({
                 success: (res) => {
-                    console.log("success-",JSON.stringify(res));
+                    console.log("success-", JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
-                    console.log("err-",JSON.stringify(res));
+                    console.log("err-", JSON.stringify(res));
                 },
-                complete:(res)=>{
+                complete: (res) => {
                     console.log(res)
                 }
             })
         }
         //开启蓝牙列表查询
         function startBluetoothDevicesDiscovery() {
-            var fp =new FpayUtils();
+            var fp = new FpayUtils();
             fp.startBluetoothDevicesDiscovery({
                 // allowDuplicatesKey:true,//是否允许重复上报同一设备。如果允许重复上报，则 uni.onBlueToothDeviceFound 方法会多次上报同一设备，但是 RSSI 值会有不同。
                 success: (res) => {
-                    console.log("success-",JSON.stringify(res));
+                    console.log("success-", JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
-                    console.log("err-",JSON.stringify(res));
+                    console.log("err-", JSON.stringify(res));
                 },
-                complete:(res)=>{
+                complete: (res) => {
                     console.log(res)
                 }
             })
         }
         //关闭蓝牙搜索
         function stopBluetoothDevicesDiscovery() {
-            var fp =new FpayUtils();
+            var fp = new FpayUtils();
             fp.stopBluetoothDevicesDiscovery({
                 success: (res) => {
-                    console.log("success-",JSON.stringify(res));
+                    console.log("success-", JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
-                    console.log("err-",JSON.stringify(res));
+                    console.log("err-", JSON.stringify(res));
                 },
-                complete:(res)=>{
+                complete: (res) => {
                     console.log(res)
                 }
             })
-         
+
         }
         //获取蓝牙适配器状态
         function getBluetoothAdapterState() {
-            var fp =new FpayUtils();
+            var fp = new FpayUtils();
             fp.getBluetoothAdapterState({
                 success: (res) => {
-                    console.log("success-",JSON.stringify(res));
+                    console.log("success-", JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
-                    console.log("err-",JSON.stringify(res));
+                    console.log("err-", JSON.stringify(res));
                 },
-                complete:(res)=>{
+                complete: (res) => {
                     console.log(res)
                 }
             })
         }
         //关闭蓝牙
         function closeBluetoothAdapter() {
-            var fp =new FpayUtils();
+            var fp = new FpayUtils();
             fp.closeBluetoothAdapter({
                 success: (res) => {
-                    console.log("success-",JSON.stringify(res));
+                    console.log("success-", JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
-                    console.log("err-",JSON.stringify(res));
+                    console.log("err-", JSON.stringify(res));
                 },
-                complete:(res)=>{
+                complete: (res) => {
                     console.log(res)
                 }
             })
         }
-        
+
         //获取所有的蓝牙设备
         function getBluetoothDevices() {
-            var fp =new FpayUtils();
+            var fp = new FpayUtils();
             fp.getBluetoothDevices({
-                
+
                 success: (res) => {
-                    console.log("success-",JSON.stringify(res));
+                    console.log("success-", JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
                 },
                 error: (res) => {
-                    console.log("err-",JSON.stringify(res));
+                    console.log("err-", JSON.stringify(res));
                 },
-                complete:(res)=>{
+                complete: (res) => {
                     console.log(res)
                 }
             })
         }
-        
+        //连接低功耗蓝牙
+        function createBLEConnection() {
+            var fp = new FpayUtils();
+            fp.createBLEConnection({
+                deviceId: deviceId,
+                success: (res) => {
+                    console.log("success-", JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
+                },
+                error: (res) => {
+                    console.log("err-", JSON.stringify(res));
+                },
+                complete: (res) => {
+                    console.log(res)
+                }
+            })
+        }
+
+        //获取蓝牙设备所有服务
+        function getBLEDeviceServices() {
+            var fp = new FpayUtils();
+            fp.getBLEDeviceServices({
+                deviceId: deviceId,
+                success: (res) => {
+                    console.log("success-", JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
+                },
+                error: (res) => {
+                    console.log("err-", JSON.stringify(res));
+                },
+                complete: (res) => {
+                    console.log(res)
+                }
+            })
+        }
+        //获取蓝牙设备某个服务中所有特征值(characteristic)
+        function getBLEDeviceCharacteristics() {
+            var fp = new FpayUtils();
+            fp.getBLEDeviceCharacteristics({
+                deviceId: deviceId,
+                serviceId: serviceId,
+                success: (res) => {
+                    console.log("success-", JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
+                },
+                error: (res) => {
+                    console.log("err-", JSON.stringify(res));
+                },
+                complete: (res) => {
+                    console.log(res)
+                }
+            })
+        }
+
+
+        //写入二进制数据
+        function writeBLECharacteristicValue() {
+            var fp = new FpayUtils();
+            fp.writeBLECharacteristicValue({
+                deviceId: "",
+                serviceId: "",
+                characteristicsId: "",
+                value: value,
+                success: (res) => {
+                    console.log("success-", JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
+                },
+                error: (res) => {
+                    console.log("err-", JSON.stringify(res));
+                },
+                complete: (res) => {
+                    console.log(res)
+                }
+            })
+        }
+        //读取低功耗蓝牙设备的特征值的二进制数据值
+        function readBLECharacteristicValue() {
+            var fp = new FpayUtils();
+            fp.readBLECharacteristicValue({
+                deviceId: "",
+                serviceId: "",
+                characteristicsId: "",
+                success: (res) => {
+                    console.log("success-", JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
+                },
+                error: (res) => {
+                    console.log("err-", JSON.stringify(res));
+                },
+                complete: (res) => {
+                    console.log(res)
+                }
+            })
+        }
+        //断开低功耗蓝牙
+        function closeBLEConnection() {
+            var fp = new FpayUtils();
+            fp.closeBLEConnection({
+                deviceId: deviceId,
+                success: (res) => {
+                    console.log("success-", JSON.stringify(res));
+                    document.getElementById("res").innerHTML = JSON.stringify(res);
+                },
+                error: (res) => {
+                    console.log("err-", JSON.stringify(res));
+                },
+                complete: (res) => {
+                    console.log(res)
+                }
+            })
+        }
+
+
     </script>
 </body>
+
 </html>
