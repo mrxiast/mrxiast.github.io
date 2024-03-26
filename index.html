@@ -9,7 +9,7 @@
 
 <body>
     <div onclick="openBluetoothAdapter()">
-        初始化蓝牙
+        初始化蓝牙--
     </div>
     <div onclick="startBluetoothDevicesDiscovery()" style="margin-top:20px;size: 20px;">
         搜索蓝牙列表蓝牙
@@ -155,6 +155,8 @@
                             div.style.margin = '5px';
                             div.onclick = function () {
                                 // 在这里，您可以使用捕获的index值，而不是外部的i变量  
+                                alert('001');
+                                index = i;
                                 createBLEConnection(); // 假设createBLEConnection不需要任何参数  
                                 // 如果createBLEConnection需要当前项的索引或数据，您可以将它们作为参数传递  
                             };
