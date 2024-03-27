@@ -117,6 +117,16 @@ class FpayUtils {
     }
     options.complete(result);
   }
+  //查询连接低功耗蓝牙的状态
+  async createBLEConnectionStatus(options) {
+    let result = await window.flutter_inappwebview.callHandler("createBLEConnectionStatus", options);
+    if (result.code !== -1) {
+      options.success(result);
+    } else {
+      options.error(result);
+    }
+    options.complete(result);
+  }
 
   //获取蓝牙设备所有服务(service)
   async getBLEDeviceServices(options) {
