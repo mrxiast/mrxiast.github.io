@@ -197,7 +197,6 @@
         function createBLEConnectionStatus() {
             var fp = new FpayUtils();
             fp.createBLEConnectionStatus({
-                deviceId: deviceId,
                 success: (res) => {
                     console.log("success-", JSON.stringify(res));
                     document.getElementById("res").innerHTML = JSON.stringify(res);
